@@ -1,9 +1,9 @@
 # Contents
- - [GET_SHEET_DATA](#get-sheet-data)
- - [REPLACE_COLS](#replace-cols)
- - [SKIP_ROWS](#skip-rows)
- - [QUERY_BY_HEADERS](#query-by-headers)
- - [QUERY_BY_HEADERS2](#query-by-headers2)
+ - [GET_SHEET_DATA](#get_sheet_data)
+ - [REPLACE_COLS](#replace_cols)
+ - [SKIP_ROWS](#skip_rows)
+ - [QUERY_BY_HEADERS](#query_by_headers)
+ - [QUERY_BY_HEADERS2](#query_by_headers2)
  - [DROP](#drop)
  - [TAKE](#take)
  - [TEXTSPLIT](#textsplit)
@@ -62,7 +62,7 @@
 
 
 ### QUERY_BY_HEADERS2
-(data, query_text)
+(data, query_text, show_headers)
 
 ```
 =LAMBDA(result, IF(show_headers, result, SKIP_ROWS(result, 1)))

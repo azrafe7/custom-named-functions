@@ -10,7 +10,7 @@ You can find them in the [GAS folder](GAS).
 ### [pythonSlice.gs](GAS/pythonSlice.gs)
 
 #### PYTHON_SLICE(array, sliceStr)
-Replicates Python slicing syntax in Google Sheets
+Replicates Python slicing syntax in Google Sheets.
 Works with 1D and 2D arrays (ranges)
 
 Usage:<br>
