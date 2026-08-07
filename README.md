@@ -4,6 +4,10 @@ Collection of custom functions (GAS - Google Apps Script) and named functions (f
 
 You can take a look at the spreadsheet with implementations and usage examples here: https://docs.google.com/spreadsheets/d/1FCbEupZSEwHm4QTMY0hdTJPSwNKSrv9AU1TRg6mlGKo/edit?usp=sharing
 
+# sections
+ - [custom functions](#custom-functions)
+ - [named functions](#named-functions)
+
 ## custom functions
 You can find them in the [GAS folder](GAS).
 

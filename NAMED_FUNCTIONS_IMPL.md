@@ -1,4 +1,4 @@
-# Contents
+# contents
  - [GET_SHEET_DATA](#get_sheet_data)
  - [REPLACE_COLS](#replace_cols)
  - [SKIP_ROWS](#skip_rows)
