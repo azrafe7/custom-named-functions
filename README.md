@@ -131,3 +131,16 @@ Example: <code>=GET_DATA_RANGE("Retail Inventory", 1, 1, 0, 10,)</code>
 
 ![alt text](assets/GET_DATA_RANGE.png)
 
+### INDIRECT_ADDRESS(row_or_ref, col_or_ref, sheet_name)
+Returns the cell identified by 'row_or_ref' and 'col_or_ref' in 'sheet_name'.
+
+If 'row_or_ref' or 'col_or_ref' are not specified, the whole row or column (respectively) will be returned.
+
+<code>**row_or_ref**</code> (otional) row index or cell ref
+<code>**col_or_ref**</code> (otional) column index or cell ref
+<code>**sheet_name**</code> The name of the sheet from which data will be extracted (defaults to current one)<br>
+
+Example: <code>=INDIRECT_ADDRESS(10, , "Retail Inventory")</code>
+
+![alt text](assets/INDIRECT_ADDRESS.png)
+

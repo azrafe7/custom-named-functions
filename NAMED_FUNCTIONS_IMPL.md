@@ -7,6 +7,8 @@
  - [DROP](#drop)
  - [TAKE](#take)
  - [TEXTSPLIT](#textsplit)
+ - [GET_DATA_RANGE](#get_data_range)
+ - [INDIRECT_ADDRESS](#indirect_address)
 
 ### GET_SHEET_DATA
 (sheet_name, headers)
@@ -172,3 +174,24 @@
   result
 )
 ```
+
+### INDIRECT_ADDRESS
+(row_or_ref, col_or_ref, sheet_name)
+```
+=LET(
+  sheet_ref, "'" & sheet_name & "'!",
+  first_row_index, IF(ISREF(row_or_ref), ROW(row_or_ref), row_or_ref),
+  first_col_index, IF(ISREF(col_or_ref), COLUMN(col_or_ref), col_or_ref),
+  first_cell_col, REGEXEXTRACT(ADDRESS(1, first_col_index), "[A-Za-z]+"),
+  whole_row_address, sheet_ref & first_row_index & ":" & first_row_index,
+  whole_col_address, sheet_ref & first_cell_col & ":" & first_cell_col,
+  data_address, IFS(
+    ISBLANK(row_or_ref), whole_col_address,
+    ISBLANK(col_or_ref), whole_row_address,
+    TRUE, sheet_ref & ADDRESS(first_row_index, first_col_index)
+  ),
+  data, INDIRECT(data_address),
+  data
+)
+```
+
