@@ -52,7 +52,7 @@ The 'headers' parameter defines if/how to include headers.
 <code>**sheet_name**</code> The name of the sheet from which data will be extracted.<br>
 <code>**headers**</code> An indicator of whether to include headers. 1 (default if not specified) will include headers. 0 will exclude headers. -1 will extract headers only.
 
-Example: <code>GET_SHEET_DATA("Sheet 1", 0)</code>
+Example: <code>=GET_SHEET_DATA("Sheet 1", 0)</code>
 
 ![alt text](assets/GET_SHEET_DATA.png)
 
@@ -65,7 +65,7 @@ Queries the provided data using Google Query language. First row must contain he
 <code>**data**</code> data range with headers in the first row<br>
 <code>**query_text**</code> query in the Google Query Language syntax where you can use header text wrapped in backticks to reference the columns
 
-Example: <code>QUERY_BY_HEADERS(A:F, "select \`name\`, \`age\`")</code>
+Example: <code>=QUERY_BY_HEADERS(A:F, "select \`name\`, \`age\`")</code>
 
 ![alt text](assets/QUERY_BY_HEADERS.png)
 
@@ -73,7 +73,7 @@ Example: <code>QUERY_BY_HEADERS(A:F, "select \`name\`, \`age\`")</code>
 Same as QUERY_BY_HEADERS, with an additional param:<br>
 <code>**show_headers**</code> if FALSE the header will not be shown
 
-Example: <code>QUERY_BY_HEADERS2(A:F, "select \`name\`, \`age\`", FALSE)</code>
+Example: <code>=QUERY_BY_HEADERS2(A:F, "select \`name\`, \`age\`", FALSE)</code>
 
 ### DROP([drop_rows], [drop_cols])
 Drops the specified number of rows/columns.
@@ -83,7 +83,7 @@ Supports negative indexing (i.e. from end of range).
 <code>**drop_rows**</code> (optional) num rows to drop (supports negative indexing)<br>
 <code>**drop_cols**</code> (optional) num columns to drop (supports negative indexing)<br>
 
-Example: <code>DROP(A1:C5, 1, -1)</code>
+Example: <code>=DROP(A1:C5, 1, -1)</code>
 
 ![alt text](assets/DROP.png)
 
@@ -95,7 +95,7 @@ Supports negative indexing (i.e. from end of range).
 <code>**take_rows**</code> (optional) num rows to take (supports negative indexing)<br>
 <code>**take_cols**</code> (optional) num columns to take (supports negative indexing)<br>
 
-Example: <code>TAKE(A1:C5, 1, -2)</code>
+Example: <code>=TAKE(A1:C5, 1, -2)</code>
 
 ![alt text](assets/TAKE.png)
 
@@ -108,6 +108,26 @@ Splits text at specified delimiters. Supports both row and column delimiters.
 <code>**ignore_empty**</code> (optional) specify TRUE to ignore consecutive delimiters. Defaults to FALSE, which creates an empty cell<br>
 <code>**pad_with**</code> (optional) the value with which to pad the result (and empty cells). The default is ""
 
-Example: <code>TEXTSPLIT(A1, ",", ";", TRUE, "---")</code>
+Example: <code>=TEXTSPLIT(A1, ",", ";", TRUE, "---")</code>
 
 ![alt text](assets/TEXTSPLIT.png)
+
+### GET_DATA_RANGE(sheet_name, row_or_ref, col_or_ref, headers, max_rows, max_cols)
+More powerful version of GET_SHEET_DATA. 
+
+Returns data from the specified coords in 'sheet_name'. 
+
+Output is a rectangular range extending from the cell identified by 'row_or_ref' and 'col_or_ref' of 'sheet_name' to the LAST non empty cell of the identified row and the LAST non empty cell of the identified column of the specified sheet.
+
+The 'headers' parameter defines if/how to include headers.
+'max_rows' and 'max_cols' limit the output size.
+
+<code>**sheet_name**</code> The name of the sheet from which data will be extracted.<br>
+<code>**row_or_ref**</code> (otional) row index or cell ref
+<code>**col_or_ref**</code> (otional) column index or cell ref
+<code>**headers**</code> An indicator of whether to include headers. 1 (default if not specified) will include headers. 0 will exclude headers. -1 will extract headers only.
+
+Example: <code>=GET_DATA_RANGE("Retail Inventory", 1, 1, 0, 10,)</code>
+
+![alt text](assets/GET_DATA_RANGE.png)
+

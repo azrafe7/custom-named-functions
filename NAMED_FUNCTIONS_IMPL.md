@@ -139,3 +139,36 @@
 )
 ```
 
+### GET_DATA_RANGE
+(sheet_name, row_or_ref, col_or_ref, headers, max_rows, max_cols)
+
+```
+=LET(
+  sheet_ref, "'" & sheet_name & "'!",
+  first_row_index, IF(ISREF(row_or_ref), ROW(row_or_ref), row_or_ref),
+  first_col_index, IF(ISREF(col_or_ref), COLUMN(col_or_ref), col_or_ref),
+  first_cell_address, ADDRESS(first_row_index, first_col_index),
+  max_row_index, IF(max_rows, first_row_index + max_rows - 1, first_row_index),
+  max_col_index, IF(max_cols, first_col_index + max_cols - 1, first_col_index),
+  first_cell_col, REGEXEXTRACT(first_cell_address, "[A-Za-z]+"),
+  first_row_address, sheet_ref & first_cell_address & ":" & IF(ISBLANK(max_cols), first_row_index, ADDRESS(first_row_index, max_col_index)),
+  first_row, INDIRECT(first_row_address), 
+  first_col_address, sheet_ref & first_cell_address & ":" & IF(ISBLANK(max_rows), first_cell_col, first_cell_col & max_row_index),
+  first_col, INDIRECT(first_col_address), 
+  num_rows, MAX(ARRAYFORMULA(ROW(first_col)*(first_col<>""))), 
+  num_cols, MAX(ARRAYFORMULA(COLUMN(first_row)*(first_row<>""))), 
+  data_address, sheet_ref & first_cell_address & ":" & ADDRESS(num_rows,num_cols,4),
+  data, INDIRECT(data_address), 
+  result, IF(
+    OR(headers=1,ISBLANK(headers)),
+    data, 
+    IF(
+      headers=0, 
+      CHOOSEROWS(data,SEQUENCE(num_rows-1,1,2)), 
+      IF(headers=-1, CHOOSEROWS(data,1), NA())
+    )
+  ),
+  addrs, {first_cell_address, first_row_address, first_col_address, data_address},
+  result
+)
+```
