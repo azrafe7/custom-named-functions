@@ -9,6 +9,9 @@
  - [TEXTSPLIT](#textsplit)
  - [GET_DATA_RANGE](#get_data_range)
  - [INDIRECT_ADDRESS](#indirect_address)
+ - [STARTS_WITH](#starts_with)
+ - [ENDS_WITH](#ends_with)
+ - [TEXT_CONTAINS](#text_contains)
 
 ### GET_SHEET_DATA
 (sheet_name, headers)
