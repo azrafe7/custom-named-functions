@@ -103,8 +103,8 @@ Example: <code>=TAKE(A1:C5, 1, -2)</code>
 Splits text at specified delimiters. Supports both row and column delimiters.
 
 <code>**text**</code> the text on which operate<br>
-<code>**col_delimiter**</code> (optional) columns will be split at this delimiter<br>
-<code>**row_delimiter**</code> (optional) rows will be split at this delimiter<br>
+<code>**col_delimiter**</code> (optional) columns will be split at this delimiter. Use "" to split into individual chars<br>
+<code>**row_delimiter**</code> (optional) rows will be split at this delimiter. Use "" to split into individual chars<br>
 <code>**ignore_empty**</code> (optional) specify TRUE to ignore consecutive delimiters. Defaults to FALSE, which creates an empty cell<br>
 <code>**pad_with**</code> (optional) the value with which to pad the result (and empty cells). The default is ""
 

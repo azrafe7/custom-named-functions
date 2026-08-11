@@ -117,28 +117,34 @@
 (text, [col_delimiter], [row_delimiter], [ignore_empty], [pad_with])
 
 ```
-=LET(
-  colDelim, IF(ISBLANK(col_delimiter), "", col_delimiter),
-  rowDelim, IF(ISBLANK(row_delimiter), "", row_delimiter),
+=LAMBDA(text, col_delimiter, row_delimiter, ignore_empty, pad_with,
+LET(
+  colDelim, col_delimiter,
+  rowDelim, row_delimiter,
   ignoreEmpty, IF(ISBLANK(ignore_empty), FALSE, ignore_empty),
   padValue, IF(ISBLANK(pad_with), "", pad_with),
   
-  rawRowSplit, IF(rowDelim = "",
-    {text},
-    SPLIT(text, rowDelim, FALSE, ignoreEmpty)
+  rawRowSplit, IF(
+    ISBLANK(rowDelim), {text}, IF(
+      rowDelim = "", ARRAYFORMULA(MID(text, SEQUENCE(1, LEN(text)), 1)),
+      SPLIT(text, rowDelim, FALSE, ignoreEmpty)
+    )
   ),
-  
+ 
   rowSplit, TRANSPOSE(rawRowSplit),
       
-  splitted, IF(colDelim = "",
-    rowSplit,
-    ARRAYFORMULA(IF(rowSplit = "", "", SPLIT(rowSplit, colDelim, FALSE, ignoreEmpty)))
+  splitted, IF(
+    ISBLANK(colDelim), rowSplit, IF(
+      colDelim = "", BYROW(rowSplit, LAMBDA(rowText, ARRAYFORMULA(MID(rowText, SEQUENCE(1,LEN(rowText)), 1)))),
+      ARRAYFORMULA(IF(rowSplit = "", "", SPLIT(rowSplit, colDelim, FALSE, ignoreEmpty)))
+    )
   ),
   padded, MAKEARRAY(ROWS(splitted), COLUMNS(splitted),
     LAMBDA(r, c, IF(INDEX(splitted, r, c) = "", padValue, INDEX(splitted, r, c)))
   ),
-  padded
+  IF(text="", "", padded)
 )
+)(text, col_delimiter, row_delimiter, ignore_empty, pad_with)
 ```
 
 ### GET_DATA_RANGE
