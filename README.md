@@ -123,24 +123,62 @@ The 'headers' parameter defines if/how to include headers.
 'max_rows' and 'max_cols' limit the output size.
 
 <code>**sheet_name**</code> The name of the sheet from which data will be extracted.<br>
-<code>**row_or_ref**</code> (otional) row index or cell ref
-<code>**col_or_ref**</code> (otional) column index or cell ref
-<code>**headers**</code> An indicator of whether to include headers. 1 (default if not specified) will include headers. 0 will exclude headers. -1 will extract headers only.
+<code>**row_or_ref**</code> (otional) row index or cell ref<br>
+<code>**col_or_ref**</code> (otional) column index or cell ref<br>
+<code>**headers**</code> An indicator of whether to include headers. 1 (default if not specified) will include headers. 0 will exclude headers. -1 will extract headers only.<br>
 
 Example: <code>=GET_DATA_RANGE("Retail Inventory", 1, 1, 0, 10,)</code>
 
 ![alt text](assets/GET_DATA_RANGE.png)
 
-### INDIRECT_ADDRESS(row_or_ref, col_or_ref, sheet_name)
+### INDIRECT_ADDRESS(row_or_ref, col_or_ref, [sheet_name])
 Returns the cell identified by 'row_or_ref' and 'col_or_ref' in 'sheet_name'.
 
 If 'row_or_ref' or 'col_or_ref' are not specified, the whole row or column (respectively) will be returned.
 
-<code>**row_or_ref**</code> (otional) row index or cell ref
-<code>**col_or_ref**</code> (otional) column index or cell ref
+<code>**row_or_ref**</code> (otional) row index or cell ref<br>
+<code>**col_or_ref**</code> (otional) column index or cell ref<br>
 <code>**sheet_name**</code> The name of the sheet from which data will be extracted (defaults to current one)<br>
 
 Example: <code>=INDIRECT_ADDRESS(10, , "Retail Inventory")</code>
 
 ![alt text](assets/INDIRECT_ADDRESS.png)
+
+### STARTS_WITH(text, search_for, [ignore_case])
+Check wether 'text' starts with  'search_for'. 
+
+If 'ignore_case' is set to FALSE the comparison will be case-sensitive (defaults to TRUE).
+
+
+<code>**text**</code> Text to be searched<br>
+<code>**search_for**</code> Text to be searched for<br>
+<code>**ignore_case**</code> (optional) If set to FALSE the comparison will be case-sensitive (defaults to TRUE)<br>
+
+Example: <code>=STARTS_WITH("dRaGOn", "DRAG")</code>
+
+### ENDS_WITH(text, search_for, [ignore_case])
+Check wether 'text' ends with  'search_for'. 
+
+If 'ignore_case' is set to FALSE the comparison will be case-sensitive (defaults to TRUE).
+
+
+<code>**text**</code> Text to be searched<br>
+<code>**search_for**</code> Text to be searched for<br>
+<code>**ignore_case**</code> (optional) If set to FALSE the comparison will be case-sensitive (defaults to TRUE)<br>
+
+Example: <code>=ENDS_WITH("dRaGOn", "ON")</code>
+
+### TEXT_CONTAINS(text, search_for, [ignore_case])
+Check wether 'text' contains  'search_for'. 
+
+If 'ignore_case' is set to FALSE the comparison will be case-sensitive (defaults to TRUE).
+
+
+<code>**text**</code> Text to be searched<br>
+<code>**search_for**</code> Text to be searched for<br>
+<code>**ignore_case**</code> (optional) If set to FALSE the comparison will be case-sensitive (defaults to TRUE)<br>
+
+Example: <code>=TEXT_CONTAINS("dRaGOn", "RAG")</code>
+
+![alt text](assets/STARTS_ENDS_CONTAINS.png)
 

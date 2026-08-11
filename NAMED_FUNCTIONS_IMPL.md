@@ -195,3 +195,42 @@
 )
 ```
 
+### STARTS_WITH
+(text, search_for, [ignore_case])
+```
+=LET(
+  _ignore_case, IF(ISBLANK(ignore_case), TRUE, ignore_case),
+  _text, IF(_ignore_case, LOWER(text), text),
+  _search_for, IF(_ignore_case, LOWER(search_for), search_for),
+  _search_for_length, LEN(_search_for),
+  result, EXACT(LEFT(_text, _search_for_length), _search_for),
+  result
+)
+```
+
+### ENDS_WITH
+(text, search_for, [ignore_case])
+```
+=LET(
+  _ignore_case, IF(ISBLANK(ignore_case), TRUE, ignore_case),
+  _text, IF(_ignore_case, LOWER(text), text),
+  _search_for, IF(_ignore_case, LOWER(search_for), search_for),
+  _search_for_length, LEN(_search_for),
+  result, EXACT(RIGHT(_text, _search_for_length), _search_for),
+  result
+)
+```
+
+### TEXT_CONTAINS
+(text, search_for, [ignore_case])
+```
+=LET(
+  _ignore_case, IF(ISBLANK(ignore_case), TRUE, ignore_case),
+  _text, IF(_ignore_case, LOWER(text), text),
+  _search_for, IF(_ignore_case, LOWER(search_for), search_for),
+  _search_for_length, LEN(_search_for),
+  result, IF(_search_for = "", 0, FIND(_search_for, _text)),
+  IFERROR(result >= 0, FALSE)
+)
+```
+
