@@ -12,6 +12,8 @@
  - [STARTS_WITH](#starts_with)
  - [ENDS_WITH](#ends_with)
  - [TEXT_CONTAINS](#text_contains)
+ - [TEXT_REVERSE](#text_reverse)
+ - [REVERSE_RANGE](#reverse_range)
 
 ### GET_SHEET_DATA
 (sheet_name, headers)
@@ -243,3 +245,26 @@ LET(
 )
 ```
 
+### TEXT_REVERSE
+(text)
+```
+=LAMBDA(text, 
+  IF(text="", "", TEXTJOIN("", FALSE, ARRAYFORMULA(MID(text, SEQUENCE(1, LEN(text), LEN(text), -1), 1))))
+)(text)
+```
+
+### REVERSE_RANGE
+(range, reverse_rows, reverse_cols)
+```
+=LAMBDA(range, reverse_rows, reverse_cols,
+LET(
+  _reverse_rows, IF(ISBLANK(reverse_rows), TRUE, reverse_rows),
+  _reverse_cols, IF(ISBLANK(reverse_cols), TRUE, reverse_cols),
+  num_rows, ROWS(range),
+  num_cols, COLUMNS(range),
+  reversed_rows, IF(_reverse_rows, CHOOSEROWS(range, SEQUENCE(num_rows, 1, num_rows, -1)), range),
+  reversed_cols, IF(_reverse_cols, CHOOSECOLS(reversed_rows, SEQUENCE(1, num_cols, num_cols, -1)), reversed_rows),
+  reversed_cols
+)
+)(range, reverse_rows, reverse_cols)
+```

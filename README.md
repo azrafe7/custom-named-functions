@@ -182,3 +182,24 @@ Example: <code>=TEXT_CONTAINS("dRaGOn", "RAG")</code>
 
 ![alt text](assets/STARTS_ENDS_CONTAINS.png)
 
+### TEXT_REVERSE(text)
+Reverses 'text'.
+
+
+<code>**text**</code> Text to be reversed<br>
+
+Example: <code>=TEXT_REVERSE("abcdef")</code>
+
+![alt text](assets/REVERSE.png)
+
+### REVERSE_RANGE(text)
+Reverses rows and/or cols of the specified range.
+
+<code>**range**</code> Range to be reversed<br>
+<code>**reverse_rows**</code> (optional) wether to reverse rows (defaults to TRUE)<br>
+<code>**reverse_cols**</code> (optional) wether to reverse columns (defaults to TRUE)<br>
+
+Example: <code>=REVERSE_RANGE(A1:C5, FALSE, TRUE)</code>
+
+![alt text](assets/REVERSE.png)
+
