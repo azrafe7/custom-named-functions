@@ -30,7 +30,7 @@ Usage:<br>
 @return {Array} The sliced array
 ```
 
-![alt text](assets/PYTHON_SLICE.png)
+![](assets/PYTHON_SLICE.png)
 
 #### SLICE(array, sliceStr)
 
@@ -54,7 +54,7 @@ The 'headers' parameter defines if/how to include headers.
 
 Example: <code>=GET_SHEET_DATA("Sheet 1", 0)</code>
 
-![alt text](assets/GET_SHEET_DATA.png)
+![](assets/GET_SHEET_DATA.png)
 
 ### QUERY_BY_HEADERS(data, query_text)
 Sourced from here: https://webapps.stackexchange.com/a/167714
@@ -67,7 +67,7 @@ Queries the provided data using Google Query language. First row must contain he
 
 Example: <code>=QUERY_BY_HEADERS(A:F, "select \`name\`, \`age\`")</code>
 
-![alt text](assets/QUERY_BY_HEADERS.png)
+![](assets/QUERY_BY_HEADERS.png)
 
 ### QUERY_BY_HEADERS2(data, query_text, show_headers)
 Same as QUERY_BY_HEADERS, with an additional param:<br>
@@ -85,7 +85,7 @@ Supports negative indexing (i.e. from end of range).
 
 Example: <code>=DROP(A1:C5, 1, -1)</code>
 
-![alt text](assets/DROP.png)
+![](assets/DROP.png)
 
 ### TAKE([take_rows], [take_cols])
 Takes the specified number of rows/columns (discards the rest).
@@ -97,7 +97,7 @@ Supports negative indexing (i.e. from end of range).
 
 Example: <code>=TAKE(A1:C5, 1, -2)</code>
 
-![alt text](assets/TAKE.png)
+![](assets/TAKE.png)
 
 ### TEXTSPLIT(text, [col_delimiter], [row_delimiter], [ignore_empty], [pad_with])
 Splits text at specified delimiters. Supports both row and column delimiters.
@@ -110,7 +110,7 @@ Splits text at specified delimiters. Supports both row and column delimiters.
 
 Example: <code>=TEXTSPLIT(A1, ",", ";", TRUE, "---")</code>
 
-![alt text](assets/TEXTSPLIT.png)
+![](assets/TEXTSPLIT.png)
 
 ### GET_DATA_RANGE(sheet_name, row_or_ref, col_or_ref, headers, max_rows, max_cols)
 More powerful version of GET_SHEET_DATA. 
@@ -129,7 +129,7 @@ The 'headers' parameter defines if/how to include headers.
 
 Example: <code>=GET_DATA_RANGE("Retail Inventory", 1, 1, 0, 10,)</code>
 
-![alt text](assets/GET_DATA_RANGE.png)
+![](assets/GET_DATA_RANGE.png)
 
 ### INDIRECT_ADDRESS(row_or_ref, col_or_ref, [sheet_name])
 Returns the cell identified by 'row_or_ref' and 'col_or_ref' in 'sheet_name'.
@@ -142,7 +142,7 @@ If 'row_or_ref' or 'col_or_ref' are not specified, the whole row or column (resp
 
 Example: <code>=INDIRECT_ADDRESS(10, , "Retail Inventory")</code>
 
-![alt text](assets/INDIRECT_ADDRESS.png)
+![](assets/INDIRECT_ADDRESS.png)
 
 ### STARTS_WITH(text, search_for, [ignore_case])
 Check wether 'text' starts with  'search_for'. 
@@ -180,7 +180,7 @@ If 'ignore_case' is set to FALSE the comparison will be case-sensitive (defaults
 
 Example: <code>=TEXT_CONTAINS("dRaGOn", "RAG")</code>
 
-![alt text](assets/STARTS_ENDS_CONTAINS.png)
+![](assets/STARTS_ENDS_CONTAINS.png)
 
 ### TEXT_REVERSE(text)
 Reverses 'text'.
@@ -190,7 +190,7 @@ Reverses 'text'.
 
 Example: <code>=TEXT_REVERSE("abcdef")</code>
 
-![alt text](assets/REVERSE.png)
+![](assets/REVERSE.png)
 
 ### REVERSE_RANGE(text)
 Reverses rows and/or cols of the specified range.
@@ -201,7 +201,7 @@ Reverses rows and/or cols of the specified range.
 
 Example: <code>=REVERSE_RANGE(A1:C5, FALSE, TRUE)</code>
 
-![alt text](assets/REVERSE.png)
+![](assets/REVERSE.png)
 
 ### MAP_RANGE(range, func)
 Maps all values of 'range' by applying 'func'.
@@ -211,7 +211,7 @@ Maps all values of 'range' by applying 'func'.
 <code>**range**</code> Range to map<br>
 <code>**func**</code> a LAMBDA(val, r, c, <formula>) where 'r' and 'c' are row and column indices, and 'val' is the original value<br>
 
-[alt text](assets/MAP_RANGE.png)
+![](assets/MAP_RANGE.png)
 
 ### TRIMRANGE(range, trim_rows, trim_columns)
 Excludes blank cells from the edges of a range/array.
@@ -220,4 +220,4 @@ Excludes blank cells from the edges of a range/array.
 <code>**trim_rows**</code> Determines which rows should be trimmed 0 - None 1 - Trims leading blank rows 2 - Trims trailing blank rows 3 - Trims both leading and trailing blank rows (default)<br>
 <code>**trim_columns**</code> Determines which columns should be trimmed 0 - None 1 - Trims leading blank columns 2 - Trims trailing blank columns 3 - Trims both leading and trailing blank columns (default)<br>
 
-![alt text](assets/TRIMRANGE.png)
+![](assets/TRIMRANGE.png)
