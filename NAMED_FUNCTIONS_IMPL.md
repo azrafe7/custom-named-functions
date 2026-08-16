@@ -14,6 +14,8 @@
  - [TEXT_CONTAINS](#text_contains)
  - [TEXT_REVERSE](#text_reverse)
  - [REVERSE_RANGE](#reverse_range)
+ - [MAP_RANGE](#map_range)
+ - [TRIMRANGE](#trimrange)
 
 ### GET_SHEET_DATA
 (sheet_name, headers)
@@ -267,4 +269,40 @@ LET(
   reversed_cols
 )
 )(range, reverse_rows, reverse_cols)
+```
+
+### MAP_RANGE
+(range, func)
+```
+=LAMBDA(range, func,
+LET(
+  num_rows, ROWS(range),
+  num_cols, COLUMNS(range),
+  MAKEARRAY(num_rows, num_cols, LAMBDA(r, c, func(INDEX(range, r, c), r, c)))
+)
+)(range, func)
+```
+
+### TRIMRANGE
+(range, trim_rows, trim_columns)
+```
+=LET(
+  _trim_rows, IF(ISBLANK(trim_rows), 3, trim_rows),
+  _trim_columns, IF(ISBLANK(trim_columns), 3, trim_columns),
+  num_rows, ROWS(range),
+  num_cols, COLUMNS(range),
+  not_empty_row_indices, MAKEARRAY(num_rows, num_cols, LAMBDA(r, c, IF(INDEX(range, r, c) = "", 0, r))),
+  not_empty_col_indices, MAKEARRAY(num_rows, num_cols, LAMBDA(r, c, IF(INDEX(range, r, c) = "", 0, c))),
+
+  min_r, IF(OR(_trim_rows=0, _trim_rows=2), 1, REDUCE(0, not_empty_row_indices, LAMBDA(acc, idx, IF(AND(idx>0, acc=0), idx, acc)))),
+  max_r, IF(OR(_trim_rows=0, _trim_rows=1), num_rows, REDUCE(0, not_empty_row_indices, LAMBDA(acc, idx, IF(idx=0, acc, idx)))),
+  min_c, IF(OR(_trim_columns=0, _trim_columns=2), 1, REDUCE(0, TRANSPOSE(not_empty_col_indices), LAMBDA(acc, idx, IF(AND(idx>0, acc=0), idx, acc)))),
+  max_c, IF(OR(_trim_columns=0, _trim_columns=1), num_cols, REDUCE(0, TRANSPOSE(not_empty_col_indices), LAMBDA(acc, idx, IF(idx=0, acc, idx)))),
+  
+  res_rows, max_r - min_r + 1,
+  res_cols, max_c - min_c + 1,
+  res_indices, {"", "min", "max", "len"; "row_indices", min_r, max_r, res_rows; "col_indices", min_c, max_c, res_cols},
+  res, MAKEARRAY(res_rows, res_cols, LAMBDA(r, c, INDEX(range, min_r + r - 1, min_c + c - 1))),
+  res
+)
 ```

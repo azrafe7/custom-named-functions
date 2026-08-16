@@ -203,3 +203,21 @@ Example: <code>=REVERSE_RANGE(A1:C5, FALSE, TRUE)</code>
 
 ![alt text](assets/REVERSE.png)
 
+### MAP_RANGE(range, func)
+Maps all values of 'range' by applying 'func'.
+
+'func' must be a LAMBDA(val, r, c, <formula>)
+
+<code>**range**</code> Range to map<br>
+<code>**func**</code> a LAMBDA(val, r, c, <formula>) where 'r' and 'c' are row and column indices, and 'val' is the original value<br>
+
+[alt text](assets/MAP_RANGE.png)
+
+### TRIMRANGE(range, trim_rows, trim_columns)
+Excludes blank cells from the edges of a range/array.
+
+<code>**range**</code> Array or range to be trimmed<br>
+<code>**trim_rows**</code> Determines which rows should be trimmed 0 - None 1 - Trims leading blank rows 2 - Trims trailing blank rows 3 - Trims both leading and trailing blank rows (default)<br>
+<code>**trim_columns**</code> Determines which columns should be trimmed 0 - None 1 - Trims leading blank columns 2 - Trims trailing blank columns 3 - Trims both leading and trailing blank columns (default)<br>
+
+![alt text](assets/TRIMRANGE.png)
