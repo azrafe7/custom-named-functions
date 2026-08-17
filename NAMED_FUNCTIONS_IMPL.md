@@ -190,6 +190,7 @@ LET(
 
 ### INDIRECT_ADDRESS
 (row_or_ref, col_or_ref, sheet_name)
+
 ```
 =LET(
   sheet_ref, "'" & sheet_name & "'!",
@@ -210,6 +211,7 @@ LET(
 
 ### STARTS_WITH
 (text, search_for, [ignore_case])
+
 ```
 =LET(
   _ignore_case, IF(ISBLANK(ignore_case), TRUE, ignore_case),
@@ -223,6 +225,7 @@ LET(
 
 ### ENDS_WITH
 (text, search_for, [ignore_case])
+
 ```
 =LET(
   _ignore_case, IF(ISBLANK(ignore_case), TRUE, ignore_case),
@@ -236,6 +239,7 @@ LET(
 
 ### TEXT_CONTAINS
 (text, search_for, [ignore_case])
+
 ```
 =LET(
   _ignore_case, IF(ISBLANK(ignore_case), TRUE, ignore_case),
@@ -249,6 +253,7 @@ LET(
 
 ### TEXT_REVERSE
 (text)
+
 ```
 =LAMBDA(text, 
   IF(text="", "", TEXTJOIN("", FALSE, ARRAYFORMULA(MID(text, SEQUENCE(1, LEN(text), LEN(text), -1), 1))))
@@ -257,6 +262,7 @@ LET(
 
 ### REVERSE_RANGE
 (range, reverse_rows, reverse_cols)
+
 ```
 =LAMBDA(range, reverse_rows, reverse_cols,
 LET(
@@ -273,6 +279,7 @@ LET(
 
 ### MAP_RANGE
 (range, func)
+
 ```
 =LAMBDA(range, func,
 LET(
@@ -285,8 +292,10 @@ LET(
 
 ### TRIMRANGE
 (range, trim_rows, trim_columns)
+
 ```
-=LET(
+=LAMBDA(range, trim_rows, trim_columns,
+LET(
   _trim_rows, IF(ISBLANK(trim_rows), 3, trim_rows),
   _trim_columns, IF(ISBLANK(trim_columns), 3, trim_columns),
   num_rows, ROWS(range),
@@ -305,4 +314,5 @@ LET(
   res, MAKEARRAY(res_rows, res_cols, LAMBDA(r, c, INDEX(range, min_r + r - 1, min_c + c - 1))),
   res
 )
+)(range, trim_rows, trim_columns)
 ```
