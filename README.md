@@ -54,7 +54,7 @@ Usage:<br>
 @return {Array} The sliced array
 ```
 
-![](assets/PYTHON_SLICE.png)
+![PYTHON_SLICE](assets/PYTHON_SLICE.png)
 
 <br>
 
