@@ -35,7 +35,7 @@ You can find them in the [GAS folder](GAS).
 
 <br>
 
-#### PYTHON_SLICE
+#### • **PYTHON_SLICE**
 (array, sliceStr)
 
 Replicates Python slicing syntax in Google Sheets.
