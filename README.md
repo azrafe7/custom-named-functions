@@ -6,7 +6,7 @@ You can take a look at the spreadsheet with implementations and usage examples h
 
 # sections
  - [custom functions](#custom-functions)
-    - [pythonSlice.gs](#python_slice)
+    - [pythonSlice.gs](#pythonslicegs)
         - [PYTHON_SLICE](#python_slice)
         - [SLICE](#slice)
  - [named functions](#named-functions)
@@ -70,7 +70,8 @@ Returns single value if result has 1 element, array otherwise
 <details><summary>code</summary>
 
 ```
-=LET(
+=LAMBDA(sheet_name, headers,
+LET(
   sheet_ref, "'" & sheet_name & "'!", 
   first_col, INDIRECT(sheet_ref & "A:A"), 
   first_row, INDIRECT(sheet_ref & "A1:1"), 
@@ -87,6 +88,7 @@ Returns single value if result has 1 element, array otherwise
     )
   )
 )
+)(sheet_name, headers)
 ```
 </details><br>
 
@@ -109,11 +111,13 @@ Example: <code>=GET_SHEET_DATA("Sheet 1", 0)</code>
 <details><summary>code</summary>
 
 ```
-=QUERY({data}, LAMBDA(text, columns,
+=LAMBDA(data, query_text,
+QUERY({data}, LAMBDA(text, columns,
   REDUCE(text, FILTER(columns, NOT(ISBLANK(columns))), LAMBDA(res, col,
     REGEXREPLACE(res, "`" & col & "`", "Col" & MATCH(col, columns, 0))))
   )(query_text, ARRAY_CONSTRAIN(data, 1, COLUMNS(data))),
 1)
+)(data, query_text)
 ```
 </details><br>
 
@@ -135,11 +139,9 @@ Example: <code>=QUERY_BY_HEADERS(A:F, "select \`name\`, \`age\`")</code>
 <details><summary>code</summary>
 
 ```
-=REDUCE(
-  text, 
-  FILTER(columns, NOT(ISBLANK(columns))), 
-  LAMBDA(res, col, REGEXREPLACE(res, "`" & col & "`", "Col" & MATCH(col, columns, 0)))
-)
+=LAMBDA(text, columns,
+REDUCE(text, FILTER(columns, NOT(ISBLANK(columns))), LAMBDA(res, col, REGEXREPLACE(res, "`" & col & "`", "Col" & MATCH(col, columns, 0))))
+)(text, columns)
 ```
 </details><br>
 
@@ -149,7 +151,9 @@ Example: <code>=QUERY_BY_HEADERS(A:F, "select \`name\`, \`age\`")</code>
 <details><summary>code</summary>
 
 ```
-=FILTER(data, MAKEARRAY(ROWS(data), 1, LAMBDA(ri, ci, ri > rows_to_skip)))
+=LAMBDA(data, rows_to_skip,
+FILTER(data, MAKEARRAY(ROWS(data), 1, LAMBDA(ri, ci, ri > rows_to_skip)))
+)(data, rows_to_skip)
 ```
 </details><br>
 
@@ -159,8 +163,10 @@ Example: <code>=QUERY_BY_HEADERS(A:F, "select \`name\`, \`age\`")</code>
 <details><summary>code</summary>
 
 ```
-=LAMBDA(result, IF(show_headers, result, SKIP_ROWS(result, 1)))
+=LAMBDA(data, query_text, show_headers,
+LAMBDA(result, IF(show_headers, result, SKIP_ROWS(result, 1)))
 (QUERY({data}, REPLACE_COLS(query_text, ARRAY_CONSTRAIN(data, 1, COLUMNS(data))), 1))
+)(data, query_text, show_headers)
 ```
 </details><br>
 
@@ -175,7 +181,8 @@ Example: <code>=QUERY_BY_HEADERS2(A:F, "select \`name\`, \`age\`", FALSE)</code>
 <details><summary>code</summary>
 
 ```
-=LET(
+=LAMBDA(range, drop_rows, drop_cols,
+LET(
   src_rows, ROWS(range),
   src_cols, COLUMNS(range),
   start_row, IF(drop_rows > 0, drop_rows + 1, 1),
@@ -190,6 +197,7 @@ Example: <code>=QUERY_BY_HEADERS2(A:F, "select \`name\`, \`age\`", FALSE)</code>
   ),
   result
 )
+)(range, drop_rows, drop_cols)
 ```
 </details><br>
 
@@ -210,7 +218,8 @@ Example: <code>=DROP(A1:C5, 1, -1)</code>
 <details><summary>code</summary>
 
 ```
-=LET(
+=LAMBDA(range, take_rows, take_cols,
+LET(
   src_rows, ROWS(range),
   src_cols, COLUMNS(range),
   start_row, IF(take_rows < 0, src_rows + take_rows + 1, 1),
@@ -225,6 +234,7 @@ Example: <code>=DROP(A1:C5, 1, -1)</code>
   ),
   result
 )
+)(range, take_rows, take_cols)
 ```
 </details><br>
 
@@ -294,7 +304,8 @@ Example: <code>=TEXTSPLIT(A1, ",", ";", TRUE, "---")</code>
 <details><summary>code</summary>
 
 ```
-=LET(
+=LAMBDA(sheet_name, row_or_ref, col_or_ref, headers, max_rows, max_cols,
+LET(
   sheet_ref, "'" & sheet_name & "'!",
   first_row_index, IF(ISREF(row_or_ref), ROW(row_or_ref), row_or_ref),
   first_col_index, IF(ISREF(col_or_ref), COLUMN(col_or_ref), col_or_ref),
@@ -322,6 +333,7 @@ Example: <code>=TEXTSPLIT(A1, ",", ";", TRUE, "---")</code>
   addrs, {first_cell_address, first_row_address, first_col_address, data_address},
   result
 )
+)(sheet_name, row_or_ref, col_or_ref, headers, max_rows, max_cols)
 ```
 </details><br>
 
@@ -349,7 +361,8 @@ Example: <code>=GET_DATA_RANGE("Retail Inventory", 1, 1, 0, 10,)</code>
 <details><summary>code</summary>
 
 ```
-=LET(
+=LAMBDA(row_or_ref, col_or_ref, sheet_name,
+LET(
   sheet_ref, "'" & sheet_name & "'!",
   first_row_index, IF(ISREF(row_or_ref), ROW(row_or_ref), row_or_ref),
   first_col_index, IF(ISREF(col_or_ref), COLUMN(col_or_ref), col_or_ref),
@@ -364,6 +377,7 @@ Example: <code>=GET_DATA_RANGE("Retail Inventory", 1, 1, 0, 10,)</code>
   data, INDIRECT(data_address),
   data
 )
+)(row_or_ref, col_or_ref, sheet_name)
 ```
 </details><br>
 
@@ -385,7 +399,8 @@ Example: <code>=INDIRECT_ADDRESS(10, , "Retail Inventory")</code>
 <details><summary>code</summary>
 
 ```
-=LET(
+=LAMBDA(text, search_for, ignore_case,
+LET(
   _ignore_case, IF(ISBLANK(ignore_case), TRUE, ignore_case),
   _text, IF(_ignore_case, LOWER(text), text),
   _search_for, IF(_ignore_case, LOWER(search_for), search_for),
@@ -393,6 +408,7 @@ Example: <code>=INDIRECT_ADDRESS(10, , "Retail Inventory")</code>
   result, EXACT(LEFT(_text, _search_for_length), _search_for),
   result
 )
+)(text, search_for, ignore_case)
 ```
 </details><br>
 
@@ -413,7 +429,8 @@ Example: <code>=STARTS_WITH("dRaGOn", "DRAG")</code>
 <details><summary>code</summary>
 
 ```
-=LET(
+=LAMBDA(text, search_for, ignore_case,
+LET(
   _ignore_case, IF(ISBLANK(ignore_case), TRUE, ignore_case),
   _text, IF(_ignore_case, LOWER(text), text),
   _search_for, IF(_ignore_case, LOWER(search_for), search_for),
@@ -421,6 +438,7 @@ Example: <code>=STARTS_WITH("dRaGOn", "DRAG")</code>
   result, EXACT(RIGHT(_text, _search_for_length), _search_for),
   result
 )
+)(text, search_for, ignore_case)
 ```
 </details><br>
 
@@ -441,7 +459,8 @@ Example: <code>=ENDS_WITH("dRaGOn", "ON")</code>
 <details><summary>code</summary>
 
 ```
-=LET(
+=LAMBDA(text, search_for, ignore_case,
+LET(
   _ignore_case, IF(ISBLANK(ignore_case), TRUE, ignore_case),
   _text, IF(_ignore_case, LOWER(text), text),
   _search_for, IF(_ignore_case, LOWER(search_for), search_for),
@@ -449,6 +468,7 @@ Example: <code>=ENDS_WITH("dRaGOn", "ON")</code>
   result, IF(_search_for = "", 0, FIND(_search_for, _text)),
   IFERROR(result >= 0, FALSE)
 )
+)(text, search_for, ignore_case)
 ```
 </details><br>
 
