@@ -33,6 +33,8 @@ You can find them in the [GAS folder](GAS).
 
 ### [pythonSlice.gs](GAS/pythonSlice.gs)
 
+<br>
+
 #### PYTHON_SLICE
 (array, sliceStr)
 
@@ -53,6 +55,8 @@ Usage:<br>
 ```
 
 ![](assets/PYTHON_SLICE.png)
+
+<br>
 
 #### SLICE
 (array, sliceStr)
@@ -105,6 +109,8 @@ Example: <code>=GET_SHEET_DATA("Sheet 1", 0)</code>
 
 ![](assets/GET_SHEET_DATA.png)
 
+<br>
+
 ### QUERY_BY_HEADERS
 (data, query_text)
 
@@ -132,6 +138,8 @@ Queries the provided data using Google Query language. First row must contain he
 Example: <code>=QUERY_BY_HEADERS(A:F, "select \`name\`, \`age\`")</code>
 
 ![](assets/QUERY_BY_HEADERS.png)
+
+<br>
 
 ### REPLACE_COLS
 (text, columns)
@@ -175,6 +183,8 @@ Same as QUERY_BY_HEADERS, with an additional param:<br>
 
 Example: <code>=QUERY_BY_HEADERS2(A:F, "select \`name\`, \`age\`", FALSE)</code>
 
+<br>
+
 ### DROP
 ([drop_rows], [drop_cols])
 
@@ -212,6 +222,8 @@ Example: <code>=DROP(A1:C5, 1, -1)</code>
 
 ![](assets/DROP.png)
 
+<br>
+
 ### TAKE
 ([take_rows], [take_cols])
 
@@ -248,6 +260,8 @@ Supports negative indexing (i.e. from end of range).
 Example: <code>=TAKE(A1:C5, 1, -2)</code>
 
 ![](assets/TAKE.png)
+
+<br>
 
 ### TEXTSPLIT
 (text, [col_delimiter], [row_delimiter], [ignore_empty], [pad_with])
@@ -297,6 +311,8 @@ Splits text at specified delimiters. Supports both row and column delimiters.
 Example: <code>=TEXTSPLIT(A1, ",", ";", TRUE, "---")</code>
 
 ![](assets/TEXTSPLIT.png)
+
+<br>
 
 ### GET_DATA_RANGE
 (sheet_name, row_or_ref, col_or_ref, headers, max_rows, max_cols)
@@ -355,6 +371,8 @@ Example: <code>=GET_DATA_RANGE("Retail Inventory", 1, 1, 0, 10,)</code>
 
 ![](assets/GET_DATA_RANGE.png)
 
+<br>
+
 ### INDIRECT_ADDRESS
 (row_or_ref, col_or_ref, [sheet_name])
 
@@ -393,6 +411,8 @@ Example: <code>=INDIRECT_ADDRESS(10, , "Retail Inventory")</code>
 
 ![](assets/INDIRECT_ADDRESS.png)
 
+<br>
+
 ### STARTS_WITH
 (text, search_for, [ignore_case])
 
@@ -423,6 +443,8 @@ If 'ignore_case' is set to FALSE the comparison will be case-sensitive (defaults
 
 Example: <code>=STARTS_WITH("dRaGOn", "DRAG")</code>
 
+<br>
+
 ### ENDS_WITH
 (text, search_for, [ignore_case])
 
@@ -452,6 +474,8 @@ If 'ignore_case' is set to FALSE the comparison will be case-sensitive (defaults
 <code>**ignore_case**</code> (optional) If set to FALSE the comparison will be case-sensitive (defaults to TRUE)<br>
 
 Example: <code>=ENDS_WITH("dRaGOn", "ON")</code>
+
+<br>
 
 ### TEXT_CONTAINS
 (text, search_for, [ignore_case])
@@ -485,6 +509,8 @@ Example: <code>=TEXT_CONTAINS("dRaGOn", "RAG")</code>
 
 ![](assets/STARTS_ENDS_CONTAINS.png)
 
+<br>
+
 ### TEXT_REVERSE
 (text)
 
@@ -505,6 +531,8 @@ Reverses 'text'.
 Example: <code>=TEXT_REVERSE("abcdef")</code>
 
 ![](assets/REVERSE.png)
+
+<br>
 
 ### REVERSE_RANGE
 (range, reverse_rows, reverse_cols)
@@ -536,6 +564,8 @@ Example: <code>=REVERSE_RANGE(A1:C5, FALSE, TRUE)</code>
 
 ![](assets/REVERSE.png)
 
+<br>
+
 ### MAP_RANGE
 (range, func)
 
@@ -561,6 +591,8 @@ Maps all values of 'range' by applying 'func'.
 <code>**func**</code> a LAMBDA(val, r, c, <formula>) where 'r' and 'c' are row and column indices, and 'val' is the original value<br>
 
 ![](assets/MAP_RANGE.png)
+
+<br>
 
 ### TRIMRANGE
 (range, trim_rows, trim_columns)
