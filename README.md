@@ -4,10 +4,12 @@ Collection of custom functions (GAS - Google Apps Script) and named functions (f
 
 You can take a look at the spreadsheet with implementations and usage examples here: https://docs.google.com/spreadsheets/d/1FCbEupZSEwHm4QTMY0hdTJPSwNKSrv9AU1TRg6mlGKo/edit?usp=sharing
 
+<br>
+
 # sections
  - [custom functions](#custom-functions)
     - [pythonSlice.gs](#pythonslicegs)
-        - [PYTHON_SLICE](#python_slice)
+        - [PYTHON_SLICE](#-python_slice)
         - [SLICE](#slice)
  - [named functions](#named-functions)
     - [GET_SHEET_DATA](#get_sheet_data)
@@ -28,7 +30,9 @@ You can take a look at the spreadsheet with implementations and usage examples h
     - [MAP_RANGE](#map_range)
     - [TRIMRANGE](#trimrange)
 
-## custom functions
+<br>
+
+## **custom functions**
 You can find them in the [GAS folder](GAS).
 
 ### [pythonSlice.gs](GAS/pythonSlice.gs)
@@ -58,17 +62,18 @@ Usage:<br>
 
 <br>
 
-#### SLICE
+#### • **SLICE**
 (array, sliceStr)
 
 Shorthand function for common slicing operations
 <br>
 Returns single value if result has 1 element, array otherwise
 
+<br>
 
-## named functions
+## **named functions**
 
-### GET_SHEET_DATA
+#### • **GET_SHEET_DATA**
 (sheet_name, headers)
 
 <details><summary>code</summary>
@@ -111,7 +116,7 @@ Example: <code>=GET_SHEET_DATA("Sheet 1", 0)</code>
 
 <br>
 
-### QUERY_BY_HEADERS
+#### • **QUERY_BY_HEADERS**
 (data, query_text)
 
 <details><summary>code</summary>
@@ -141,7 +146,7 @@ Example: <code>=QUERY_BY_HEADERS(A:F, "select \`name\`, \`age\`")</code>
 
 <br>
 
-### REPLACE_COLS
+#### • **REPLACE_COLS**
 (text, columns)
 
 <details><summary>code</summary>
@@ -153,7 +158,7 @@ REDUCE(text, FILTER(columns, NOT(ISBLANK(columns))), LAMBDA(res, col, REGEXREPLA
 ```
 </details><br>
 
-### SKIP_ROWS
+#### • **SKIP_ROWS**
 (data, rows_to_skip)
 
 <details><summary>code</summary>
@@ -165,7 +170,7 @@ FILTER(data, MAKEARRAY(ROWS(data), 1, LAMBDA(ri, ci, ri > rows_to_skip)))
 ```
 </details><br>
 
-### QUERY_BY_HEADERS2
+#### • **QUERY_BY_HEADERS2**
 (data, query_text, show_headers)
 
 <details><summary>code</summary>
@@ -185,7 +190,7 @@ Example: <code>=QUERY_BY_HEADERS2(A:F, "select \`name\`, \`age\`", FALSE)</code>
 
 <br>
 
-### DROP
+#### • **DROP**
 ([drop_rows], [drop_cols])
 
 <details><summary>code</summary>
@@ -224,7 +229,7 @@ Example: <code>=DROP(A1:C5, 1, -1)</code>
 
 <br>
 
-### TAKE
+#### • **TAKE**
 ([take_rows], [take_cols])
 
 <details><summary>code</summary>
@@ -263,7 +268,7 @@ Example: <code>=TAKE(A1:C5, 1, -2)</code>
 
 <br>
 
-### TEXTSPLIT
+#### • **TEXTSPLIT**
 (text, [col_delimiter], [row_delimiter], [ignore_empty], [pad_with])
 
 <details><summary>code</summary>
@@ -314,7 +319,7 @@ Example: <code>=TEXTSPLIT(A1, ",", ";", TRUE, "---")</code>
 
 <br>
 
-### GET_DATA_RANGE
+#### • **GET_DATA_RANGE**
 (sheet_name, row_or_ref, col_or_ref, headers, max_rows, max_cols)
 
 <details><summary>code</summary>
@@ -373,7 +378,7 @@ Example: <code>=GET_DATA_RANGE("Retail Inventory", 1, 1, 0, 10,)</code>
 
 <br>
 
-### INDIRECT_ADDRESS
+#### • **INDIRECT_ADDRESS**
 (row_or_ref, col_or_ref, [sheet_name])
 
 <details><summary>code</summary>
@@ -413,7 +418,7 @@ Example: <code>=INDIRECT_ADDRESS(10, , "Retail Inventory")</code>
 
 <br>
 
-### STARTS_WITH
+#### • **STARTS_WITH**
 (text, search_for, [ignore_case])
 
 <details><summary>code</summary>
@@ -445,7 +450,7 @@ Example: <code>=STARTS_WITH("dRaGOn", "DRAG")</code>
 
 <br>
 
-### ENDS_WITH
+#### • **ENDS_WITH**
 (text, search_for, [ignore_case])
 
 <details><summary>code</summary>
@@ -477,7 +482,7 @@ Example: <code>=ENDS_WITH("dRaGOn", "ON")</code>
 
 <br>
 
-### TEXT_CONTAINS
+#### • **TEXT_CONTAINS**
 (text, search_for, [ignore_case])
 
 <details><summary>code</summary>
@@ -511,7 +516,7 @@ Example: <code>=TEXT_CONTAINS("dRaGOn", "RAG")</code>
 
 <br>
 
-### TEXT_REVERSE
+#### • **TEXT_REVERSE**
 (text)
 
 <details><summary>code</summary>
@@ -534,7 +539,7 @@ Example: <code>=TEXT_REVERSE("abcdef")</code>
 
 <br>
 
-### REVERSE_RANGE
+#### • **REVERSE_RANGE**
 (range, reverse_rows, reverse_cols)
 
 <details><summary>code</summary>
@@ -566,7 +571,7 @@ Example: <code>=REVERSE_RANGE(A1:C5, FALSE, TRUE)</code>
 
 <br>
 
-### MAP_RANGE
+#### • **MAP_RANGE**
 (range, func)
 
 <details><summary>code</summary>
@@ -594,7 +599,7 @@ Maps all values of 'range' by applying 'func'.
 
 <br>
 
-### TRIMRANGE
+#### • **TRIMRANGE**
 (range, trim_rows, trim_columns)
 
 <details><summary>code</summary>
