@@ -10,25 +10,25 @@ You can take a look at the spreadsheet with implementations and usage examples h
  - [custom functions](#custom-functions)
     - [pythonSlice.gs](#pythonslicegs)
         - [PYTHON_SLICE](#-python_slice)
-        - [SLICE](#slice)
+        - [SLICE](#-slice)
  - [named functions](#named-functions)
-    - [GET_SHEET_DATA](#get_sheet_data)
-    - [REPLACE_COLS](#replace_cols)
-    - [SKIP_ROWS](#skip_rows)
+    - [GET_SHEET_DATA](#-get_sheet_data)
     - [QUERY_BY_HEADERS](#query_by_headers)
-    - [QUERY_BY_HEADERS2](#query_by_headers2)
-    - [DROP](#drop)
-    - [TAKE](#take)
-    - [TEXTSPLIT](#textsplit)
-    - [GET_DATA_RANGE](#get_data_range)
-    - [INDIRECT_ADDRESS](#indirect_address)
-    - [STARTS_WITH](#starts_with)
-    - [ENDS_WITH](#ends_with)
-    - [TEXT_CONTAINS](#text_contains)
-    - [TEXT_REVERSE](#text_reverse)
-    - [REVERSE_RANGE](#reverse_range)
-    - [MAP_RANGE](#map_range)
-    - [TRIMRANGE](#trimrange)
+    - [REPLACE_COLS](#-replace_cols)
+    - [SKIP_ROWS](#-skip_rows)
+    - [QUERY_BY_HEADERS2](#-query_by_headers2)
+    - [DROP](#-drop)
+    - [TAKE](#-take)
+    - [TEXTSPLIT](#-textsplit)
+    - [GET_DATA_RANGE](#-get_data_range)
+    - [INDIRECT_ADDRESS](#-indirect_address)
+    - [STARTS_WITH](#-starts_with)
+    - [ENDS_WITH](#-ends_with)
+    - [TEXT_CONTAINS](#-text_contains)
+    - [TEXT_REVERSE](#-text_reverse)
+    - [REVERSE_RANGE](#-reverse_range)
+    - [MAP_RANGE](#-map_range)
+    - [TRIMRANGE](#-trimrange)
 
 <br>
 
@@ -58,7 +58,7 @@ Usage:<br>
 @return {Array} The sliced array
 ```
 
-![PYTHON_SLICE](assets/PYTHON_SLICE.png)
+![](assets/PYTHON_SLICE.png)
 
 <br>
 
@@ -187,6 +187,8 @@ Same as QUERY_BY_HEADERS, with an additional param:<br>
 <code>**show_headers**</code> if FALSE the header will not be shown
 
 Example: <code>=QUERY_BY_HEADERS2(A:F, "select \`name\`, \`age\`", FALSE)</code>
+
+![](assets/QUERY_BY_HEADERS.png)
 
 <br>
 
@@ -448,6 +450,8 @@ If 'ignore_case' is set to FALSE the comparison will be case-sensitive (defaults
 
 Example: <code>=STARTS_WITH("dRaGOn", "DRAG")</code>
 
+![](assets/STARTS_ENDS_CONTAINS.png)
+
 <br>
 
 #### • **ENDS_WITH**
@@ -479,6 +483,8 @@ If 'ignore_case' is set to FALSE the comparison will be case-sensitive (defaults
 <code>**ignore_case**</code> (optional) If set to FALSE the comparison will be case-sensitive (defaults to TRUE)<br>
 
 Example: <code>=ENDS_WITH("dRaGOn", "ON")</code>
+
+![](assets/STARTS_ENDS_CONTAINS.png)
 
 <br>
 
