@@ -595,11 +595,11 @@ LET(
 
 Maps all values of 'range' by applying 'func'.
 
-'func' must be a LAMBDA(val, r, c, <formula>)
+'func' must be a LAMBDA(val, r, c, \<formula>)
 
 
 <code>**range**</code> Range to map<br>
-<code>**func**</code> a LAMBDA(val, r, c, <formula>) where 'r' and 'c' are row and column indices, and 'val' is the original value<br>
+<code>**func**</code> a LAMBDA(val, r, c, \<formula>) where 'r' and 'c' are row and column indices, and 'val' is the original value<br>
 
 ![](assets/MAP_RANGE.png)
 
